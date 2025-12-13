@@ -19,17 +19,14 @@ def ouvrirUnFichier(nom):
     return contenu
 
 #Théorie de l'échantillonnage (intervalles de fluctuation)
-#L'échantillonnage se base sur la répétitivité.
 print("Résultat sur le calcul d'un intervalle de fluctuation")
 
 donnees = pd.DataFrame(ouvrirUnFichier("./data/Echantillonnage-100-Echantillons.csv"))
 
 #Théorie de l'estimation (intervalles de confiance)
-#L'estimation se base sur l'effectif.
 print("Résultat sur le calcul d'un intervalle de confiance")
 
 #Théorie de la décision (tests d'hypothèse)
-#La décision se base sur la notion de risques alpha et bêta.
 #Comme à la séance précédente, l'ensemble des tests se trouve au lien : https://docs.scipy.org/doc/scipy/reference/stats.html
 print("Théorie de la décision")
 
@@ -51,7 +48,7 @@ print("\n=== Fréquences de l'échantillon ===")
 for col, val in frequences_echantillon.items():
     print(f"{col} -> {val}")
 
-# Population mère : utiliser les mêmes noms de colonnes que dans le CSV
+# Population mère : 
 population_mere = {
     "Pour": 852,
     "Contre": 911,
@@ -63,7 +60,7 @@ frequences_population = {col: round(population_mere[col] / somme_pop, 2) for col
 
 # Comparaison
 print("\nComparaison des fréquences :")
-for col in donnees.columns:  # boucle sur les colonnes du CSV
+for col in donnees.columns:  
     print(f"{col} -> Échantillon : {frequences_echantillon[col]} | Population : {frequences_population[col]}")
 
 # Taille de l'échantillon
@@ -109,7 +106,6 @@ for col in donnees.columns:
 data1 = pd.read_csv("./data/Loi-normale-Test-1.csv")
 data2 = pd.read_csv("./data/Loi-normale-Test-2.csv")
 
-# Supposons que les données soient dans une seule colonne
 col1 = data1.iloc[:,0].values
 col2 = data2.iloc[:,0].values
 
@@ -133,7 +129,7 @@ if p2 > alpha:
 else:
     print("Le fichier 2 ne suit pas une loi normale (on rejette H0).")
 
-# Visualisation graphique avec Matplotlib
+# Visualisation 
 fig, axs = plt.subplots(1, 2, figsize=(12,5))
 
 # Histogramme + courbe normale ajustée pour fichier 1
